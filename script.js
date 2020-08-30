@@ -10,9 +10,15 @@ function replaceText(element) {
       '<span class="blackedOut">$1</span>'
     );
 
+    const noCovid19 = document.createElement("span");
+    noCovid19.innerHTML = element.textContent.replace(
+      /(covid\-19)/gi,
+      '<span class="blackedOut">$1</span>'
+    );
+
     const noCovid = document.createElement("span");
     noCovid.innerHTML = element.textContent.replace(
-      /(covid\-19)/gi,
+      /(covid)/gi,
       '<span class="blackedOut">$1</span>'
     );
 
@@ -20,6 +26,9 @@ function replaceText(element) {
       element.replaceWith(noCorona);
     }
     if (element.textContent.match(/covid\-19/gi)) {
+      element.replaceWith(noCovid19);
+    }
+    if (element.textContent.match(/covid/gi)) {
       element.replaceWith(noCovid);
     }
   }
